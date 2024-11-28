@@ -30,11 +30,10 @@ public class Currency extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Currency(String currencyName, BigDecimal exchangeRate, String symbol, User user) {
+    public Currency(String currencyName, BigDecimal exchangeRate, String symbol) {
         this.currencyName = currencyName;
         this.exchangeRate = exchangeRate;
         this.symbol = symbol;
-        this.user = user;
     }
 
     public Currency() {

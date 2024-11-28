@@ -30,7 +30,13 @@ public class CurrencyService {
 
     @Transactional
     public CurrencyResponseDto save(CurrencyRequestDto currencyRequestDto) {
-        Currency savedCurrency = currencyRepository.save(currencyRequestDto.toEntity());
+        Currency savedCurrency = new Currency(
+                currencyRequestDto.getCurrencyName(),
+                currencyRequestDto.getExchangeRate(),
+                currencyRequestDto.getSymbol()
+        );
+        currencyRepository.save(savedCurrency);
+
         return new CurrencyResponseDto(savedCurrency);
     }
 }

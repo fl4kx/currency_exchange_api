@@ -11,14 +11,10 @@ public class CurrencyRequestDto {
     private String currencyName;
     private BigDecimal exchangeRate;
     private String symbol;
-    private User user;
 
-    public Currency toEntity() {
-        return new Currency(
-                this.currencyName,
-                this.exchangeRate,
-                this.symbol,
-                this.user
-        );
+    public CurrencyRequestDto(String currencyName, BigDecimal exchangeRate, String symbol) {
+        this.currencyName = currencyName;
+        this.exchangeRate = exchangeRate;
+        this.symbol = symbol;
     }
 }
