@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 
 @Getter
 @Entity
-@Table (name = "user_currency")
-public class UserCurrency extends Date {
+@Table(name = "user_currency")
+public class UserCurrency extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
