@@ -15,38 +15,4 @@ https://documenter.getpostman.com/view/39403184/2sAYBXCBMh
 
 ## SQL
 
-create table user
-(
-	created_at datetime(6) null,
-	id bigint auto_increment
-		primary key,
-	modified_at datetime(6) null,
-	email varchar(255) null,
-	name varchar(255) null
-);
-
-create table currency
-(
-	exchange_rate decimal(38,2) null,
-	created_at datetime(6) null,
-	id bigint auto_increment primary key,
-	modified_at datetime(6) null,
-	user_id bigint null,
-	currency_name varchar(255) null,
-	symbol varchar(255) null,
-	foreign key (user_id) references user (id)
-);
-
-create table user_currency
-(
-	after_exchange decimal(38,2) null,
-	before_exchange decimal(38,2) null,
-	created_at datetime(6) null,
-	currency_id bigint null,
-	id bigint auto_increment primary key,
-	modified_at datetime(6) null,
-	user_id bigint null,
-	status varchar(255) null,
-	foreign key (currency_id) references currency (id),
-	foreign key (user_id) references user (id)
-);
+![SQL](https://github.com/user-attachments/assets/557a4f13-157b-43fa-98aa-57017429b6ff)
