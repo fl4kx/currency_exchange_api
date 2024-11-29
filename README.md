@@ -11,8 +11,8 @@ https://documenter.getpostman.com/view/39403184/2sAYBXCBMh
 
 ## ERD
 
-![exchangeERD](https://github.com/user-attachments/assets/539ac3e3-1745-48c8-a651-4147e05e2110)
+![ERD.png](images/ERD.png)
 
 ## SQL
 
-![SQL](https://github.com/user-attachments/assets/557a4f13-157b-43fa-98aa-57017429b6ff)
+![SQL.png](images/SQL.png)
