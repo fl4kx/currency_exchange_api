@@ -1,28 +1,32 @@
 package com.sparta.currency_user.service;
 
-import com.sparta.currency_user.dto.CurrencyExchangeDto;
-import com.sparta.currency_user.dto.CurrencyExchangeResponseDto;
+import com.sparta.currency_user.dto.ExchangeRequestDto;
+import com.sparta.currency_user.dto.ExchangeResponseDto;
+import com.sparta.currency_user.dto.UpdateExchangeRequestDto;
 import com.sparta.currency_user.entity.Currency;
 import com.sparta.currency_user.entity.User;
 import com.sparta.currency_user.entity.UserCurrency;
-import com.sparta.currency_user.repository.CurrencyExchangeRepository;
+import com.sparta.currency_user.repository.ExchangeRepository;
 import com.sparta.currency_user.repository.CurrencyRepository;
 import com.sparta.currency_user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.RoundingMode;
 
 @Service
 @RequiredArgsConstructor
-public class CurrencyExchangeService {
+public class ExchangeService {
 
-    private final CurrencyExchangeRepository currencyExchangeRepository;
+    private final ExchangeRepository exchangeRepository;
     private final UserRepository userRepository;
     private final CurrencyRepository currencyRepository;
 
-    public CurrencyExchangeResponseDto exchange(Long userId, Long currencyId, CurrencyExchangeDto requestDto) {
+    @Transactional
+    public void create(Long userId, Long currencyId, ExchangeRequestDto requestDto) {
 
+        // TODO:
         User user = userRepository.findUserByIdOrElseThrow(userId);
 
         Currency findCurrency = currencyRepository.findCurrencyByIdOrElseThrow(currencyId);
@@ -35,10 +39,21 @@ public class CurrencyExchangeService {
                 findCurrency
         );
 
-        currencyExchangeRepository.save(userCurrency);
-
-        return new CurrencyExchangeResponseDto(userCurrency.getAfterExchange(), userCurrency.getStatus());
+        exchangeRepository.save(userCurrency);
     }
 
 
+    public ExchangeResponseDto findById(Long exchangeId) {
+        UserCurrency findExchange =  exchangeRepository.findExchangeByIdOrElseThrow(exchangeId);
+
+        return new ExchangeResponseDto(findExchange);
+    }
+
+    @Transactional
+    public void updateById(Long id, UpdateExchangeRequestDto requestDto) {
+        UserCurrency findExchange = exchangeRepository.findExchangeByIdOrElseThrow(id);
+
+        findExchange.updateStatus(requestDto);
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.sparta.currency_user.entity;
 
+import com.sparta.currency_user.dto.UpdateExchangeRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -45,5 +46,9 @@ public class UserCurrency extends BaseEntity {
 
     public UserCurrency() {
 
+    }
+
+    public void updateStatus(UpdateExchangeRequestDto requestDto) {
+        this.status = requestDto.getStatus();
     }
 }

@@ -11,6 +11,6 @@ public interface CurrencyRepository extends JpaRepository<Currency, Long> {
     Optional<Currency> findCurrencyById(Long id);
 
     default Currency findCurrencyByIdOrElseThrow(Long id) {
-        return findCurrencyById(id).orElseThrow(()-> new IllegalArgumentException("통화를 찾을 수 없습니다."));
+        return findCurrencyById(id).orElseThrow(() -> new IllegalArgumentException("통화를 찾을 수 없습니다."));
     }
 }

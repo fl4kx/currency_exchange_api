@@ -10,7 +10,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findUserById(Long id);
+
     default User findUserByIdOrElseThrow(Long id) {
-        return findUserById(id).orElseThrow(()->new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+        return findUserById(id).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
     }
 }

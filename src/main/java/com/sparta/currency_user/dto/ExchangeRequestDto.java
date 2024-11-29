@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CurrencyExchangeDto {
+public class ExchangeRequestDto {
 
     private BigDecimal beforeExchange;
 
-    public CurrencyExchangeDto(BigDecimal beforeExchange) {
+    public ExchangeRequestDto(BigDecimal beforeExchange) {
         this.beforeExchange = beforeExchange;
     }
 }
