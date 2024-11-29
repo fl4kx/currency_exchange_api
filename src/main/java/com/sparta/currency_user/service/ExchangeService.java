@@ -17,6 +17,7 @@ import java.math.RoundingMode;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ExchangeService {
 
     private final ExchangeRepository exchangeRepository;
@@ -26,8 +27,7 @@ public class ExchangeService {
     @Transactional
     public void create(Long userId, Long currencyId, ExchangeRequestDto requestDto) {
 
-        // TODO:
-        User user = userRepository.findUserByIdOrElseThrow(userId);
+        User findUser = userRepository.findUserByIdOrElseThrow(userId);
 
         Currency findCurrency = currencyRepository.findCurrencyByIdOrElseThrow(currencyId);
 
@@ -35,7 +35,7 @@ public class ExchangeService {
                 requestDto.getBeforeExchange(),
                 requestDto.getBeforeExchange().divide(findCurrency.getExchangeRate(), 2, RoundingMode.HALF_UP),
                 "Normal",
-                user,
+                findUser,
                 findCurrency
         );
 
@@ -55,5 +55,12 @@ public class ExchangeService {
 
         findExchange.updateStatus(requestDto);
 
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        UserCurrency findExchange = exchangeRepository.findExchangeByIdOrElseThrow(id);
+
+        exchangeRepository.delete(findExchange);
     }
 }
